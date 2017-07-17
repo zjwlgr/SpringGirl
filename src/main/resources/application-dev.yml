@@ -11,3 +11,8 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+webname: TestGirlClass #测试单一配置在类中加载
+myconfig:  #测试前缀配置加载到一个类里面
+  cookietime: 3600
+  userhomeurl: /user/home
+  startweb: 1
