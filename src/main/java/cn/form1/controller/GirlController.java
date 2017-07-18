@@ -2,9 +2,11 @@ package cn.form1.controller;
 
 import cn.form1.aspect.HttpAspect;
 import cn.form1.domain.Girl;
+import cn.form1.domain.Result;
 import cn.form1.repository.GirlRepository;
 import cn.form1.service.GirlService;
 import cn.form1.properties.GirlProperties;
+import cn.form1.utils.ResultUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,17 +75,19 @@ public class GirlController {
     @PostMapping(value = "/girl")
     /*public Girl insertOne(@RequestParam(value = "cupsize",required = false,defaultValue = "F") String cupsize,
                           @RequestParam(value = "age",required = true) Integer age){*/
-    public Girl insertOne(@Valid Girl girl, BindingResult bindingResult){
+    public Result<Girl> insertOne(@Valid Girl girl, BindingResult bindingResult){
         //把多个单条参数换为对象 Girl girl
         //@Valid  表要验证他后面的对象
         //验证结果会返回到 bindingResult 这个对象中
         if(bindingResult.hasErrors()){//如果有错误
-            System.out.println(bindingResult.getFieldError().getDefaultMessage());//打印错误信息
-            return null;
+            // bindingResult.getFieldError().getDefaultMessage() //该行表示获取错误信息
+            return ResultUtil.error(1,bindingResult.getFieldError().getDefaultMessage());
         }
+
         girl.setAge(girl.getAge());
         girl.setCupSize(girl.getCupSize());
-        return girlRepository.save(girl);
+
+        return ResultUtil.success(girlRepository.save(girl));
     }
 
     /*

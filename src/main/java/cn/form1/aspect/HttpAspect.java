@@ -39,12 +39,6 @@ public class HttpAspect {
     }
 
     /*
-    * @Before是在所拦截方法执行之前执行一段逻辑。
-    * @After 是在所拦截方法执行之后执行一段逻辑。
-    * @Around是可以同时在所拦截方法的前后执行一段逻辑
-    * */
-
-    /*
     * @Before 在...之前...
     * 在运行Pointcut切点中类 之前 会调用该方法
     * @param JoinPoint 得到被执行的类。方法等  JoinPoint 记得先 import org.aspectj.lang.JoinPoint;
@@ -77,7 +71,7 @@ public class HttpAspect {
     * */
     @After("log()")
     public void  doAfter(){
-        logger.info("2222222222");
+        logger.info("After");
     }
 
     /*
@@ -86,6 +80,6 @@ public class HttpAspect {
     * */
     @AfterReturning(returning = "object", pointcut = "log()")
     public void doAfterReturning(Object object){
-        logger.info("response={}",object.toString());
+        //logger.info("response={}",object.toString());
     }
 }
