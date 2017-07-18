@@ -3,7 +3,7 @@ package cn.form1.domain;
 /**
  * HTTP 请求返回的最外层对象
  */
-public class Result<T> {
+public class Result<T> {  //这个泛型 T 代标所有类型 。。。。
 
     //错误代码
     private Integer code;
@@ -13,6 +13,7 @@ public class Result<T> {
 
     //具体内容
     private Object data;
+    //private T data;
 
     public Integer getCode() {
         return code;

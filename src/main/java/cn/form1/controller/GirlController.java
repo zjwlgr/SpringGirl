@@ -7,6 +7,7 @@ import cn.form1.repository.GirlRepository;
 import cn.form1.service.GirlService;
 import cn.form1.properties.GirlProperties;
 import cn.form1.utils.ResultUtil;
+import com.sun.javafx.iio.gif.GIFDescriptor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,9 +57,9 @@ public class GirlController {
     * 查询所有Girl表中的信息
     * */
     @GetMapping(value = "/girl")
-    public List<Girl> listAll(){
+    public Result<Girl> listAll(){
         logger.info("girlList");
-        return girlRepository.findAll();
+        return ResultUtil.success(girlRepository.findAll());
     }
 
     /*
@@ -75,7 +76,7 @@ public class GirlController {
     @PostMapping(value = "/girl")
     /*public Girl insertOne(@RequestParam(value = "cupsize",required = false,defaultValue = "F") String cupsize,
                           @RequestParam(value = "age",required = true) Integer age){*/
-    public Result<Girl> insertOne(@Valid Girl girl, BindingResult bindingResult){
+    public Result insertOne(@Valid Girl girl, BindingResult bindingResult){
         //把多个单条参数换为对象 Girl girl
         //@Valid  表要验证他后面的对象
         //验证结果会返回到 bindingResult 这个对象中
@@ -120,4 +121,14 @@ public class GirlController {
     public List<Girl> transactional(){
         return girlService.insertAll();
     }
+
+    /*
+    * 检测女生年龄方法，测试统一异常处理
+    * */
+    @GetMapping(value = "/girl/getage/{id}")
+    public Result getAge(@PathVariable(value = "id") Integer id) throws Exception{
+        Girl girl = girlService.getGirlOne(id);
+        return ResultUtil.success(girl);
+    }
+
 }

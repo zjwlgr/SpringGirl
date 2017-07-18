@@ -1,6 +1,7 @@
 package cn.form1.utils;
 
 import cn.form1.domain.Result;
+import cn.form1.enums.ResultEnum;
 
 /**
  * 封装Result处理方法
@@ -14,8 +15,10 @@ public class ResultUtil {
     * */
     public static Result success(Object object){
         Result result = new Result();
-        result.setCode(1);
-        result.setMsg("成功");
+        //使用枚举 code 0 , msg 成功
+        ResultEnum resultEnum = ResultEnum.SUCCESS;
+        result.setCode(resultEnum.getCode());
+        result.setMsg(resultEnum.getMsg());
         result.setData(object);
         return result;
     }
