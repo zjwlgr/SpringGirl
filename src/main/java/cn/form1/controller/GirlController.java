@@ -1,5 +1,9 @@
-package cn.form1;
+package cn.form1.controller;
 
+import cn.form1.domain.Girl;
+import cn.form1.repository.GirlRepository;
+import cn.form1.service.GirlService;
+import cn.form1.properties.GirlProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +20,7 @@ public class GirlController {
 
     //引入注入配置的类
     @Autowired
-    private Girlproperties girlproperties;
+    private GirlProperties girlProperties;
 
     //引入Repository接口类
     @Autowired
@@ -32,9 +36,9 @@ public class GirlController {
     @RequestMapping(value = "/config", method = RequestMethod.GET)
     public String config(){
         String str = this.webname + "_";
-        str += this.girlproperties.getCookietime() + "_";
-        str += this.girlproperties.getUserhomeurl() + "_";
-        str += this.girlproperties.getStartweb() + "_";
+        str += this.girlProperties.getCookietime() + "_";
+        str += this.girlProperties.getUserhomeurl() + "_";
+        str += this.girlProperties.getStartweb() + "_";
         return str;
     }
 

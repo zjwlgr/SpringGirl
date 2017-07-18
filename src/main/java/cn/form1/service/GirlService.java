@@ -1,5 +1,7 @@
-package cn.form1;
+package cn.form1.service;
 
+import cn.form1.domain.Girl;
+import cn.form1.repository.GirlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

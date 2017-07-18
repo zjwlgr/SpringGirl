@@ -1,4 +1,4 @@
-package cn.form1;
+package cn.form1.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

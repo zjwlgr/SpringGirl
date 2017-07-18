@@ -1,4 +1,4 @@
-package cn.form1;
+package cn.form1.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties(prefix = "myconfig")
 //以上两个注解表示注入配置要加的注解
-public class Girlproperties {
+public class GirlProperties {
 
     private Integer cookietime;
 
