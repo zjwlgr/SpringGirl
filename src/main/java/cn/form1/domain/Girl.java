@@ -10,9 +10,13 @@ public class Girl {
     @Id
     @GeneratedValue  //表示自增
     private Integer id;
+
     private String cupSize;
+
     @Min(value = 18, message = "age小于18，不可以加入")
     private Integer age;
+
+    public Girl() { }
 
     public Integer getId() {
         return id;
@@ -47,7 +51,4 @@ public class Girl {
                 '}';
     }
 
-    public Girl() {
-
-    }
 }
