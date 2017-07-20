@@ -2,6 +2,7 @@ package cn.form1;
 
 import cn.form1.event.MyApplicationEvent;
 import cn.form1.event.MyApplicationListener;
+import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -12,6 +13,9 @@ public class SpinggirlApplication {
 	public static void main(String[] args) {
 
         SpringApplication app = new SpringApplication(SpinggirlApplication.class);
+
+        //设置控制台输入的Banner
+        //app.setBannerMode(Banner.Mode.OFF);
 
         /*添加事件监听器的4种方法
         * 1，手动在启动类中加入，如下以下方式
@@ -31,6 +35,6 @@ public class SpinggirlApplication {
         ConfigurableApplicationContext context = app.run(args);
 
         //发布一个事件，事件不一定在入口处发布..
-        context.publishEvent(new MyApplicationEvent(new Object()));
+        //context.publishEvent(new MyApplicationEvent(new Object()));
 	}
 }
