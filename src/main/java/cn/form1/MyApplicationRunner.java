@@ -25,5 +25,6 @@ public class MyApplicationRunner implements ApplicationRunner {
     public void run(ApplicationArguments applicationArguments) throws Exception {
         System.out.println("=========ApplicationRunner--应用已经成功的启动=========" + Arrays.asList(applicationArguments.getSourceArgs()));
         //Arrays.asList(applicationArguments.getSourceArgs()) 获取的参数 是对原始参数做了进一步的封装
+        //除了getSourceArgs()，还有其它方法
     }
 }
