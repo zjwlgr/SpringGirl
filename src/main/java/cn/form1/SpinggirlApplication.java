@@ -21,10 +21,16 @@ public class SpinggirlApplication {
         *  ---当用的第4种-- */
         //app.addListeners(new MyApplicationListener());
 
+        /* 注册ApplicationContextInitializer后，Spring boot在初始化之前调用该类中的initialize方法
+        1，创建实现注册ApplicationContextInitializer接口的类后，手动在以下注册
+        2，创建实现注册ApplicationContextInitializer接口的类后，通过配置项配置:context.initializer.classes=类的全路径
+        * */
+        app.addInitializers(new MyApplicationContextInitializer());
+
         //创建Context上下文 并 运行应用
         ConfigurableApplicationContext context = app.run(args);
 
-        //发布一个事件
+        //发布一个事件，事件不一定在入口处发布..
         context.publishEvent(new MyApplicationEvent(new Object()));
 	}
 }
