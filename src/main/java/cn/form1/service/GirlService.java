@@ -31,7 +31,7 @@ public class GirlService {
         list.add(girlRepository.save(girl1));
 
         Girl girl2 = new Girl();
-        girl2.setCupSize("A");
+        girl2.setCupSize("ASA");
         girl2.setAge(19);
         list.add(girlRepository.save(girl2));
         return list;
