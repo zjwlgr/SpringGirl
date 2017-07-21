@@ -4,7 +4,7 @@ import cn.form1.domain.Result;
 import cn.form1.enums.ResultEnum;
 
 /**
- * 封装Result处理方法
+ * 封装Result处理方法，主要用于API返回
  */
 public class ResultUtil {
 

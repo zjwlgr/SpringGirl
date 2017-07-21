@@ -7,8 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.FileNotFoundException;
 
 /**
  * 测试 Thymeleaf
@@ -47,6 +49,19 @@ public class HomeController {
     @ResponseBody
     public String ip(HttpServletRequest httpServletRequest){
         return "IP: " + httpServletRequest.getRemoteAddr();
+    }
+
+    /*
+    * 测试抛出异常
+    * */
+    @GetMapping(value = "/excp")
+    public String excp() throws Exception{
+        throw new Exception("有页面不可以爱得处理");
+    }
+
+    @GetMapping(value = "/wu")
+    public String wu() throws ClassNotFoundException{
+        throw new ClassNotFoundException("sdf500");
     }
 
 

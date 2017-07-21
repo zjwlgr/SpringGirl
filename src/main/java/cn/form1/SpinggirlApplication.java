@@ -2,12 +2,20 @@ package cn.form1;
 
 import cn.form1.event.MyApplicationEvent;
 import cn.form1.event.MyApplicationListener;
+
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.web.ErrorMvcAutoConfiguration;
+import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
+import org.springframework.boot.web.servlet.ErrorPage;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpStatus;
 
-@SpringBootApplication
+//exclude = ErrorMvcAutoConfiguration.class 为 排掉默认的错误处理类，
+//exclude后SpringBoot不会在去把这个类纳入容器中管理
+@SpringBootApplication//(exclude = ErrorMvcAutoConfiguration.class)
 public class SpinggirlApplication {
 
 	public static void main(String[] args) {
@@ -37,4 +45,18 @@ public class SpinggirlApplication {
         //发布一个事件，事件不一定在入口处发布..
         //context.publishEvent(new MyApplicationEvent(new Object()));
 	}
+
+
+
+    @Bean
+    public EmbeddedServletContainerCustomizer containerCustomizer() {
+
+        return (container -> {
+            ErrorPage error401Page = new ErrorPage(HttpStatus.UNAUTHORIZED, "/401.html");
+            ErrorPage error404Page = new ErrorPage(HttpStatus.NOT_FOUND, "/404.html");
+            ErrorPage error500Page = new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/500.html");
+
+            container.addErrorPages(error401Page, error404Page, error500Page);
+        });
+    }
 }
