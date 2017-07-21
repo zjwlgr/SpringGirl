@@ -4,8 +4,7 @@ import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
 
 /**
- * 实现ApplicationContextInitializer接口后，
- * Spring boot在初始化之前调用该类中的initialize方法
+ * Spring boot在初始化之前调用该类中的initialize方法，需要实现ApplicationContextInitializer接口
  * 不需要纳入Spring容器管理中
  */
 public class MyApplicationContextInitializer implements ApplicationContextInitializer<ConfigurableApplicationContext>

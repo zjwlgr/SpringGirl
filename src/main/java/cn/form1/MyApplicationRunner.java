@@ -8,8 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.Arrays;
 
 /**
- * 实现ApplicationRunner接口后
- * Spring boot在初始化全部完成后调用该类中的run方法
+ * Spring boot在初始化全部完成后调用该类中的run方法，需要实现ApplicationRunner接口
  * 需要纳入到Spring容器的管理中
  * 可以实现多个这种接口类
  * 获取的参数 是对原始参数做了进一步的封装
