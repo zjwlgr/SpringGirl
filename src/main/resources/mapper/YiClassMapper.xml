@@ -15,8 +15,8 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-    id, fid, nexus, depth, name, sort, ctime, idea
-  </sql>
+id, fid, nexus, depth, name, sort, ctime, idea
+</sql>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
@@ -24,7 +24,7 @@
         from yi_class
         where id = #{id,jdbcType=INTEGER}
     </select>
-    
+
     <select id="selectList" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>
@@ -34,17 +34,17 @@
 
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from yi_class
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
+delete from yi_class
+where id = #{id,jdbcType=INTEGER}
+</delete>
     <insert id="insert" parameterType="cn.form1.domain.YiClass">
-    insert into yi_class (id, fid, nexus, 
-      depth, name, sort, 
-      ctime, idea)
-    values (#{id,jdbcType=INTEGER}, #{fid,jdbcType=INTEGER}, #{nexus,jdbcType=VARCHAR}, 
-      #{depth,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, 
-      #{ctime,jdbcType=INTEGER}, #{idea,jdbcType=VARCHAR})
-  </insert>
+insert into yi_class (id, fid, nexus,
+depth, name, sort,
+ctime, idea)
+values (#{id,jdbcType=INTEGER}, #{fid,jdbcType=INTEGER}, #{nexus,jdbcType=VARCHAR},
+#{depth,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER},
+#{ctime,jdbcType=INTEGER}, #{idea,jdbcType=VARCHAR})
+</insert>
     <insert id="insertSelective" parameterType="cn.form1.domain.YiClass">
         insert into yi_class
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -128,14 +128,14 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="cn.form1.domain.YiClass">
-    update yi_class
-    set fid = #{fid,jdbcType=INTEGER},
-      nexus = #{nexus,jdbcType=VARCHAR},
-      depth = #{depth,jdbcType=INTEGER},
-      name = #{name,jdbcType=VARCHAR},
-      sort = #{sort,jdbcType=INTEGER},
-      ctime = #{ctime,jdbcType=INTEGER},
-      idea = #{idea,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+update yi_class
+set fid = #{fid,jdbcType=INTEGER},
+nexus = #{nexus,jdbcType=VARCHAR},
+depth = #{depth,jdbcType=INTEGER},
+name = #{name,jdbcType=VARCHAR},
+sort = #{sort,jdbcType=INTEGER},
+ctime = #{ctime,jdbcType=INTEGER},
+idea = #{idea,jdbcType=VARCHAR}
+where id = #{id,jdbcType=INTEGER}
+</update>
 </mapper>
