@@ -1,11 +1,9 @@
 package cn.form1.controller;
 
-import cn.form1.domain.Classt;
-import cn.form1.service.ClassService;
+import cn.form1.domain.YiClass;
+import cn.form1.service.YiClassService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * 测试Mybatis控制器
@@ -13,19 +11,15 @@ import java.util.List;
 @RestController
 public class Classtcontorller {
 
-    /*@Autowired
-    private ClassService classService;
+    @Autowired
+    private YiClassService yiClassService;
 
-    @GetMapping(value = "/testmybatis/{fid}")
-    public List<Classt> testmybatis(@PathVariable(value = "fid") Integer fid){
-        List<Classt> classt = classService.classlistid(fid);
-        return classt;
+
+    @GetMapping(value = "/testmb")
+    public YiClass testmb(@RequestParam(value = "id") Integer id){
+        YiClass yiClass = yiClassService.selectByPrimaryKey(id);
+        return yiClass;
     }
 
-    @GetMapping(value = "/test")
-    public List<Classt> testname(@RequestParam(value = "name") String name,
-                                 @RequestParam(value = "fid") Integer fid){
-        return classService.classlistname(name,fid);
-    }*/
 
 }
