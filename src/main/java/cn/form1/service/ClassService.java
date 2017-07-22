@@ -14,8 +14,8 @@ import java.util.List;
 @Service
 public class ClassService {
 
-    @Autowired
-    private ClassMapper classMapper;
+    //@Autowired
+    //private ClassMapper classMapper;
 
     /*
     * 测试 Mybatis 的selecct
@@ -27,15 +27,15 @@ public class ClassService {
     /*
     * 测试 Mybatis 的selecct
     * */
-    public List<Classt> classlistid(Integer id){
+    /*public List<Classt> classlistid(Integer id){
         return classMapper.selectfid(id);
-    }
+    }*/
 
     /*
         * 测试 Mybatis 的selecct
         * */
-    public List<Classt> classlistname(String name,Integer fid){
+    /*public List<Classt> classlistname(String name,Integer fid){
         return classMapper.selectfname(name,fid);
-    }
+    }*/
 
 }

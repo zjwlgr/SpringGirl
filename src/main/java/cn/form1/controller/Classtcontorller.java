@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 public class Classtcontorller {
 
-    @Autowired
+    /*@Autowired
     private ClassService classService;
 
     @GetMapping(value = "/testmybatis/{fid}")
@@ -26,6 +26,6 @@ public class Classtcontorller {
     public List<Classt> testname(@RequestParam(value = "name") String name,
                                  @RequestParam(value = "fid") Integer fid){
         return classService.classlistname(name,fid);
-    }
+    }*/
 
 }
