@@ -3,6 +3,7 @@ package cn.form1;
 import cn.form1.event.MyApplicationEvent;
 import cn.form1.event.MyApplicationListener;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,11 +12,15 @@ import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomi
 import org.springframework.boot.web.servlet.ErrorPage;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
 
-//exclude = ErrorMvcAutoConfiguration.class 为 排掉默认的错误处理类，
-//exclude后SpringBoot不会在去把这个类纳入容器中管理
-@SpringBootApplication//(exclude = ErrorMvcAutoConfiguration.class)
+import javax.annotation.ManagedBean;
+
+
+@SpringBootApplication()//(exclude = ErrorMvcAutoConfiguration.class) //exclude后不会在去把这个类纳入容器中管理
+@PropertySource("classpath:jdbc.properties") //可加载多个配置文件
+@MapperScan("cn.form1.mapper") //指定mybatis的Mapper的包路径
 public class SpinggirlApplication {
 
 	public static void main(String[] args) {
@@ -58,5 +63,10 @@ public class SpinggirlApplication {
 
             container.addErrorPages(error401Page, error404Page, error500Page);
         });
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

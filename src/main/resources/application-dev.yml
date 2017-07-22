@@ -2,17 +2,25 @@ server:
   port: 8080
   context-path: /
 spring:
-  datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://123.57.233.23/springboot
-    username: springboot
-    password: 123456
+#  datasource:
+#    driver-class-name: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://123.57.233.23/springboot
+#    username: springboot
+#    password: 123456
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
   thymeleaf:
-    mode: LEGACYHTML5
+    mode: LEGACYHTML5 #thymeleaf单标记问题
+    cache: false #关闭thymeleaf缓存
+
+#mybatis.typeAliasesPackage：指定domain类的基包，即指定其在*Mapper.xml文件中可以使用简名来代替全类名
+#mybatis.mapperLocations：指定*Mapper.xml的位置
+#mybatis:
+  #type-aliases-package: cn.form1.domain #如果使用注解@Mapper 则不需要
+  #mapper-locations: classpath:mapper/*.xml #如果使纯注解的方式 则不需要
+
 
 #以下自定义配置
 webname: TestGirlClass #测试单一配置在类中加载
