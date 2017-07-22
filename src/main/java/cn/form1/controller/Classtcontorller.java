@@ -9,15 +9,16 @@ import java.util.List;
 
 /**
  * 测试Mybatis控制器
+ * 基于XML的各种sql测试1
  */
 @RestController
 public class Classtcontorller {
 
     @Autowired
-    private YiClassService yiClassService;
+    private YiClassService yiClassService;    //yi_class
 
     /*
-    * 以ID为条件查询一条信息
+    * 以ID为条件查询一条信息    yi_class
     * */
     @GetMapping(value = "/idone")
     public YiClass idone(@RequestParam(value = "id") Integer id) {
@@ -26,7 +27,7 @@ public class Classtcontorller {
     }
 
     /*
-    * 以fid与name条件查询一组信息
+    * 以fid与name条件查询一组信息    yi_class
     * */
     @GetMapping(value = "/listall")
     public List<YiClass> listall(@RequestParam(value = "fid") Integer fid,

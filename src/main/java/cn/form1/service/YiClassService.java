@@ -10,7 +10,7 @@ import java.util.List;
 
 
 /**
- * 对yi_class表的操作
+ * 基于XML的各种sql测试1
  */
 @Service
 public class YiClassService {

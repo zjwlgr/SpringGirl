@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.form1.mapper.YiArticleMapper" >
+  <resultMap id="BaseResultMap" type="cn.form1.domain.YiArticle" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="class_one" property="classOne" jdbcType="VARCHAR" />
+    <result column="class_one_id" property="classOneId" jdbcType="INTEGER" />
+    <result column="class_two" property="classTwo" jdbcType="VARCHAR" />
+    <result column="class_two_id" property="classTwoId" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="is_home" property="isHome" jdbcType="BIT" />
+    <result column="is_release" property="isRelease" jdbcType="BIT" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="click_num" property="clickNum" jdbcType="INTEGER" />
+    <result column="manager_id" property="managerId" jdbcType="INTEGER" />
+    <result column="ctime" property="ctime" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.form1.domain.YiArticle" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, class_one, class_one_id, class_two, class_two_id, title, image, is_home, is_release, 
+    sort, click_num, manager_id, ctime
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from yi_article
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from yi_article
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.form1.domain.YiArticle" >
+    insert into yi_article (id, class_one, class_one_id, 
+      class_two, class_two_id, title, 
+      image, is_home, is_release, sort, 
+      click_num, manager_id, ctime, 
+      content)
+    values (#{id,jdbcType=INTEGER}, #{classOne,jdbcType=VARCHAR}, #{classOneId,jdbcType=INTEGER}, 
+      #{classTwo,jdbcType=VARCHAR}, #{classTwoId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
+      #{image,jdbcType=VARCHAR}, #{isHome,jdbcType=BIT}, #{isRelease,jdbcType=BIT}, #{sort,jdbcType=INTEGER}, 
+      #{clickNum,jdbcType=INTEGER}, #{managerId,jdbcType=INTEGER}, #{ctime,jdbcType=INTEGER}, 
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.form1.domain.YiArticle" >
+    insert into yi_article
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="classOne != null" >
+        class_one,
+      </if>
+      <if test="classOneId != null" >
+        class_one_id,
+      </if>
+      <if test="classTwo != null" >
+        class_two,
+      </if>
+      <if test="classTwoId != null" >
+        class_two_id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="image != null" >
+        image,
+      </if>
+      <if test="isHome != null" >
+        is_home,
+      </if>
+      <if test="isRelease != null" >
+        is_release,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="clickNum != null" >
+        click_num,
+      </if>
+      <if test="managerId != null" >
+        manager_id,
+      </if>
+      <if test="ctime != null" >
+        ctime,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="classOne != null" >
+        #{classOne,jdbcType=VARCHAR},
+      </if>
+      <if test="classOneId != null" >
+        #{classOneId,jdbcType=INTEGER},
+      </if>
+      <if test="classTwo != null" >
+        #{classTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="classTwoId != null" >
+        #{classTwoId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="isHome != null" >
+        #{isHome,jdbcType=BIT},
+      </if>
+      <if test="isRelease != null" >
+        #{isRelease,jdbcType=BIT},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="clickNum != null" >
+        #{clickNum,jdbcType=INTEGER},
+      </if>
+      <if test="managerId != null" >
+        #{managerId,jdbcType=INTEGER},
+      </if>
+      <if test="ctime != null" >
+        #{ctime,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.form1.domain.YiArticle" >
+    update yi_article
+    <set >
+      <if test="classOne != null" >
+        class_one = #{classOne,jdbcType=VARCHAR},
+      </if>
+      <if test="classOneId != null" >
+        class_one_id = #{classOneId,jdbcType=INTEGER},
+      </if>
+      <if test="classTwo != null" >
+        class_two = #{classTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="classTwoId != null" >
+        class_two_id = #{classTwoId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="isHome != null" >
+        is_home = #{isHome,jdbcType=BIT},
+      </if>
+      <if test="isRelease != null" >
+        is_release = #{isRelease,jdbcType=BIT},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="clickNum != null" >
+        click_num = #{clickNum,jdbcType=INTEGER},
+      </if>
+      <if test="managerId != null" >
+        manager_id = #{managerId,jdbcType=INTEGER},
+      </if>
+      <if test="ctime != null" >
+        ctime = #{ctime,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.form1.domain.YiArticle" >
+    update yi_article
+    set class_one = #{classOne,jdbcType=VARCHAR},
+      class_one_id = #{classOneId,jdbcType=INTEGER},
+      class_two = #{classTwo,jdbcType=VARCHAR},
+      class_two_id = #{classTwoId,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      is_home = #{isHome,jdbcType=BIT},
+      is_release = #{isRelease,jdbcType=BIT},
+      sort = #{sort,jdbcType=INTEGER},
+      click_num = #{clickNum,jdbcType=INTEGER},
+      manager_id = #{managerId,jdbcType=INTEGER},
+      ctime = #{ctime,jdbcType=INTEGER},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.form1.domain.YiArticle" >
+    update yi_article
+    set class_one = #{classOne,jdbcType=VARCHAR},
+      class_one_id = #{classOneId,jdbcType=INTEGER},
+      class_two = #{classTwo,jdbcType=VARCHAR},
+      class_two_id = #{classTwoId,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      is_home = #{isHome,jdbcType=BIT},
+      is_release = #{isRelease,jdbcType=BIT},
+      sort = #{sort,jdbcType=INTEGER},
+      click_num = #{clickNum,jdbcType=INTEGER},
+      manager_id = #{managerId,jdbcType=INTEGER},
+      ctime = #{ctime,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
