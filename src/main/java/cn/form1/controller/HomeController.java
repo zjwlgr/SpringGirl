@@ -33,7 +33,7 @@ public class HomeController {
     }
 
     /*
-    * 自定义发布事件
+    * 自定义发布事 件
     * */
     @GetMapping(value = "/event")
     @ResponseBody
