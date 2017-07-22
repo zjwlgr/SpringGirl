@@ -6,6 +6,8 @@ import cn.form1.mapper.YiClassMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 /**
  * 对yi_class表的操作
@@ -16,9 +18,20 @@ public class YiClassService {
     @Autowired
     private YiClassMapper yiClassMapper;
 
+    /*
+    * 以ID为条件查询一条信息
+    * */
     public YiClass selectByPrimaryKey(Integer id){
         YiClass yiClass = yiClassMapper.selectByPrimaryKey(id);
         return yiClass;
     }
-    // could not aotuwired no beans of yiClassMapper type found
+
+    /*
+    * 以fid与name条件查询一组信息
+    * */
+    public List<YiClass> selectList(Integer fid, String name){
+        List<YiClass> list = yiClassMapper.selectList(fid, name);
+        return list;
+    }
+
 }
