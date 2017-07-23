@@ -5,6 +5,7 @@ import cn.form1.domain.YiArticle;
 import java.util.List;
 
 public interface YiArticleMapper {
+
     int deleteByPrimaryKey(Integer id);
 
     int insert(YiArticle record);
@@ -19,12 +20,15 @@ public interface YiArticleMapper {
 
     int updateByPrimaryKey(YiArticle record);
 
+    //查询所有 + 分页
+    List<YiArticle> listall();
+
     //like 查询
     List<YiArticle> listLike(String title);
 
     //多条件 + like 查询
     List<YiArticle> listWhereLike(String class_one, String class_two, String title);
 
-    //id in (String) 传入字符串 + and class_one=String
-    List<YiArticle> listIdIn(String[] ids, String one);
+    //id in (String) 传入数组或List测试  + and class_one=String
+    List<YiArticle> listIdIn(List<String> ids, String one);
 }

@@ -39,6 +39,13 @@
         where id = #{id,jdbcType=INTEGER}
     </select>
 
+    <!--查询所有-->
+    <select id="listall" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM yi_article
+    </select>
+
     <!--like 查询-->
     <select id="listLike" resultMap="BaseResultMap" parameterType="java.lang.String">
         select
@@ -64,7 +71,7 @@
         </if>
     </select>
 
-    <!--id in (Array) 传入数组 + and class_one=String-->
+    <!--id in (Array) 传入数组或List测试  + and class_one=String-->
     <select id="listIdIn" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String">
         SELECT
         <include refid="Base_Column_List"/>
@@ -102,7 +109,7 @@
       #{content,jdbcType=LONGVARCHAR})
   </insert>
 
-    <insert id="insertSelective" parameterType="cn.form1.domain.YiArticle">
+    <insert id="insertSelective" parameterType="cn.form1.domain.YiArticle" useGeneratedKeys="true" keyProperty="id">
         insert into yi_article
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">

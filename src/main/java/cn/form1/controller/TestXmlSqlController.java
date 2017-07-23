@@ -3,11 +3,9 @@ package cn.form1.controller;
 import cn.form1.domain.YiArticle;
 import cn.form1.service.YiArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,6 +16,52 @@ public class TestXmlSqlController {
 
     @Autowired
     private YiArticleService yiArticleService;
+
+    /*
+    * 删除一个对象
+    * */
+    @GetMapping(value = "/delete")
+    public int delete(@RequestParam(value = "id") Integer id){
+        return yiArticleService.deleteByPrimaryKey(id);
+        //删除成功返回1，失败返回0
+    }
+
+    /*
+    * 添加一个对象 并返回该对象，会包含该对象的自增ID
+    * */
+    @PostMapping(value = "/insert")
+    public YiArticle insert(YiArticle yiArticle){
+        int insert = yiArticleService.insert(yiArticle);
+        //删除成功返回1，失败返回0
+        return yiArticle;
+    }
+
+    /*
+    * 编辑一个对象
+    * */
+    @PostMapping(value = "/update")
+    public int update(YiArticle yiArticle){
+        return yiArticleService.updateByPrimaryKeySelective(yiArticle);
+        //删除成功返回1，失败返回0
+    }
+
+    /*
+    * 根据ID查询一个对象======自动生成的Mapper
+    * */
+    @GetMapping(value = "/article")
+    public YiArticle article(@RequestParam(value ="id") Integer id){
+        return yiArticleService.selectByPrimaryKey(id);
+    }
+
+    //======================================================================
+
+    /*
+    * 查询所有 + 分页
+    * */
+    @GetMapping(value = "/listall")
+    public List<YiArticle> listall(){
+        return yiArticleService.listall();
+    }
 
     /*
     * like 查询
@@ -38,20 +82,25 @@ public class TestXmlSqlController {
     }
 
     /*
-    *  id in (String) 传入数组+ and class_one=String 使用 PathVariable
+    *  id in (String) 传入数组或List测试   + and class_one=String 使用 PathVariable
     * */
     @GetMapping(value = "/idin_{ids}_{one}")
     public List<YiArticle> listIdIn(@PathVariable(value = "ids") String ids,
                                     @PathVariable(value = "one") String one){
-        String[] arr = ids.split(",");
-        /*for(String c : arr){
-            System.out.println(c);
-        }*/
-        return yiArticleService.listIdIn(arr, one);
+        String[] arr = ids.split(","); //传入数组测试成功
+        List<String> str = new ArrayList<>(); //传入List测试成功
+        for(String c : arr){
+            //System.out.println(c);
+            str.add(c);//把字符串加入到List中
+        }
+        for (String s : str){
+            //System.out.println(s);
+        }
+        return yiArticleService.listIdIn(str, one);
     }
 
-    /*
-    *  id in (List) 传入List
-    * */
+
+
+
 
 }

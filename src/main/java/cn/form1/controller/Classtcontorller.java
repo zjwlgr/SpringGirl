@@ -29,7 +29,7 @@ public class Classtcontorller {
     /*
     * 以fid与name条件查询一组信息    yi_class
     * */
-    @GetMapping(value = "/listall")
+    @GetMapping(value = "/listallc")
     public List<YiClass> listall(@RequestParam(value = "fid") Integer fid,
                                  @RequestParam(value = "name") String name) {
         List<YiClass> list = yiClassService.selectList(fid, name);
