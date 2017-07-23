@@ -1,17 +1,14 @@
 package cn.form1.handle;
 
 import cn.form1.domain.Result;
-import cn.form1.enums.ResultEnum;
 import cn.form1.exception.SpringGirlException;
 import cn.form1.utils.ResultUtil;
-import com.sun.org.apache.regexp.internal.RE;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.NoHandlerFoundException;
 
 import javax.servlet.http.HttpServletRequest;
 
