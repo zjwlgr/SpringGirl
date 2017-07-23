@@ -2,6 +2,7 @@ package cn.form1.controller;
 
 import cn.form1.domain.YiArticle;
 import cn.form1.service.YiArticleService;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -60,7 +61,13 @@ public class TestXmlSqlController {
     * */
     @GetMapping(value = "/listall")
     public List<YiArticle> listall(){
-        return yiArticleService.listall();
+        List<YiArticle> yiArticles = yiArticleService.listall();
+        PageInfo pageInfo = new PageInfo<YiArticle>(yiArticles);
+        System.out.println(pageInfo.getNavigateFirstPage());
+        System.out.println(pageInfo.getList());
+        //更多分页代码参考：https://github.com/abel533/MyBatis-Spring-Boot
+        //TODO 实现分页的代码，在模板中
+        return yiArticles;
     }
 
     /*
