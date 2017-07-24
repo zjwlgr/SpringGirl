@@ -1,13 +1,11 @@
 package cn.form1.controller;
 
-import cn.form1.aspect.HttpAspect;
 import cn.form1.domain.Girl;
 import cn.form1.domain.Result;
 import cn.form1.repository.GirlRepository;
 import cn.form1.service.GirlService;
 import cn.form1.properties.GirlProperties;
 import cn.form1.utils.ResultUtil;
-import com.sun.javafx.iio.gif.GIFDescriptor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
