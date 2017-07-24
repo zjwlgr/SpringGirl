@@ -1,7 +1,7 @@
 package cn.form1.domain;
 
 /**
- * 分页属性类
+ * 分页属性类，会被实现分页的类继承
  */
 public class Page {
 

@@ -78,4 +78,11 @@ public class YiArticleService {
     public List<YiArticle> listIdIn(List<String> ids, String one){
         return yiArticleMapper.listIdIn(ids, one);
     }
+
+    /*
+    * 多表查询，查询关联class_two的数据
+    * */
+    public List<YiArticle> listJoin(String class_two){
+        return yiArticleMapper.listJoin(class_two);
+    }
 }

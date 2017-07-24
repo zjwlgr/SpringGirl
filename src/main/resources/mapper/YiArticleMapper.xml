@@ -88,6 +88,30 @@
         </if>
     </select>
 
+    <!--多表查询-->
+    <select id="listJoin" resultMap="articleClassMap" parameterType="java.lang.String">
+        SELECT a.id,a.class_one_id,a.class_two_id,b.`name`,b.ctime,b.nexus,a.class_two
+        FROM `yi_article` a left join yi_class b on a.class_one_id=b.id
+        where a.class_two = #{class_two}
+    </select>
+
+    <!-- resultMap中的type表示返回什么类型的对象 -->
+    <resultMap type="cn.form1.domain.ArticleAndClass" id="articleClassMap">
+        <!-- property 表示cn.form1.domain.YiArticle中的属性； column 表示表中的列名 -->
+        <id property="id" column="id" />
+        <result property="class_one_id" column="class_one_id" />
+        <result property="class_two_id" column="class_two_id" />
+        <result property="class_two" column="class_two" />
+
+        <!-- association字面意思关联，这里只专门做一对一关联； property表示是cn.form1.domain.ArticleAndClass中的属性名称；
+            javaType表示该属性是什么类型对象 -->
+        <association property="tempClass" javaType="cn.form1.domain.YiClass">
+            <!-- property 表示cn.form1.domain.YiClass中的属性； column 表示表中的列名 -->
+            <result property="name" column="name" />
+            <result property="ctime" column="ctime" />
+            <result property="nexus" column="nexus" />
+        </association>
+    </resultMap>
 
 
 

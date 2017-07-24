@@ -101,12 +101,19 @@ public class TestXmlSqlController {
             //System.out.println(c);
             str.add(c);//把字符串加入到List中
         }
-        for (String s : str){
-            //System.out.println(s);
+        for (String d : str){
+            //System.out.println(d);
         }
         return yiArticleService.listIdIn(str, one);
     }
 
+    /*
+    * 多表查询，查询关联class_two的数据
+    * */
+    @GetMapping(value = "/listJoin")
+    public List<YiArticle> listJoin(@RequestParam(value = "two") String two){
+        return yiArticleService.listJoin(two);
+    }
 
 
 
