@@ -89,15 +89,15 @@
         </if>
     </select>
 
-    <!--多表查询 需要创建单独的resultMap-->
+    <!--====================================多表查询 需要创建并使用单独的 resultMap.association -->
     <select id="listJoin" resultMap="articleClassMap" parameterType="java.lang.String">
         SELECT a.id,a.class_one_id,a.class_two_id,b.`name`,b.ctime,b.nexus,a.class_two
         FROM `yi_article` a left join yi_class b on a.class_one_id=b.id
         where a.class_two = #{class_two}
     </select>
 
-    <!-- resultMap中的type表示返回什么类型的对象 ，resultMap 做为主表-->
-    <resultMap type="cn.form1.domain.ArticleAndClass" id="articleClassMap">
+    <!-- resultMap中的type表示返回什么类型的对象 ，当前为ArticleJoinClass两张的关联对象 -->
+    <resultMap type="cn.form1.domain.ArticleJoinClass" id="articleClassMap">
         <id property="id" column="id" />
         <result property="class_one_id" column="class_one_id" />
         <result property="class_two_id" column="class_two_id" />
@@ -113,7 +113,7 @@
             <result property="nexus" column="nexus" />
         </association>
     </resultMap>
-
+    <!--====================================多表查询 需要创建并使用单独的 resultMap.association -->
 
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">

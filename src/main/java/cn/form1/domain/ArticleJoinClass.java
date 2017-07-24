@@ -3,7 +3,7 @@ package cn.form1.domain;
 /**
  * 为多表查询所创建的关联类
  */
-public class ArticleAndClass {
+public class ArticleJoinClass {
 
     private Integer id;
     private Integer class_one_id;
