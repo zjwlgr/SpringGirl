@@ -108,13 +108,20 @@ public class TestXmlSqlController {
     }
 
     /*
-    * 多表查询，查询关联class_two的数据
+    * 多表查询，关联yi_class表
     * */
     @GetMapping(value = "/listJoin")
     public List<YiArticle> listJoin(@RequestParam(value = "two") String two){
         return yiArticleService.listJoin(two);
     }
 
+    /*
+    * 聚合查询之 Count
+    * */
+    @GetMapping(value = "/listCont")
+    public Integer listCount(@RequestParam(value = "two_id") Integer two_id){
+        return yiArticleService.listCount(two_id);
+    }
 
 
 

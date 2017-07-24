@@ -32,6 +32,9 @@ public interface YiArticleMapper {
     //id in (String) 传入数组或List测试  + and class_one=String
     List<YiArticle> listIdIn(List<String> ids, String one);
 
-    //多表查询
+    //多表查询，关联yi_class表
     List<YiArticle> listJoin(String class_two);
+
+    //聚合查询之 Count
+    Integer listCount(Integer two_id);
 }

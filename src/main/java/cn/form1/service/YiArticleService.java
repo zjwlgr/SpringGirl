@@ -80,9 +80,17 @@ public class YiArticleService {
     }
 
     /*
-    * 多表查询，查询关联class_two的数据
+    * 多表查询，关联yi_class表
     * */
     public List<YiArticle> listJoin(String class_two){
         return yiArticleMapper.listJoin(class_two);
     }
+
+    /*
+    * 聚合查询之 Count
+    * */
+    public Integer listCount(Integer two_id){
+        return yiArticleMapper.listCount(two_id);
+    }
+
 }

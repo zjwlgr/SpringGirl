@@ -115,6 +115,14 @@
     </resultMap>
     <!--====================================多表查询 需要创建并使用单独的 resultMap.association -->
 
+    <!--聚合查询之 Count,,不需指定resultMap，必须指定resultType和parameterType类型
+    这种只需返回一个字段值的要设置返回类型-->
+    <select id="listCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        SELECT COUNT(id) as two_count
+        FROM `yi_article`
+        where class_two_id = #{two_id}
+    </select>
+
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from yi_article
