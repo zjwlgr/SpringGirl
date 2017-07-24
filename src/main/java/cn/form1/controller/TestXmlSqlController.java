@@ -5,6 +5,7 @@ import cn.form1.service.YiArticleService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,14 +61,14 @@ public class TestXmlSqlController {
     * 查询所有 + 分页
     * */
     @GetMapping(value = "/listall")
-    public List<YiArticle> listall(){
-        List<YiArticle> yiArticles = yiArticleService.listall();
-        PageInfo pageInfo = new PageInfo<YiArticle>(yiArticles);
-        System.out.println(pageInfo.getNavigateFirstPage());
-        System.out.println(pageInfo.getList());
-        //更多分页代码参考：https://github.com/abel533/MyBatis-Spring-Boot
-        //TODO 实现分页的代码，在模板中
-        return yiArticles;
+    public ModelAndView listall(YiArticle yiArticle){
+        ModelAndView result = new ModelAndView("pages");
+        List<YiArticle> yiArticles = yiArticleService.listall(yiArticle);
+        result.addObject("pageInfo", new PageInfo<YiArticle>(yiArticles));//实例化一个PageInfo对象
+        result.addObject("queryParam", yiArticle);//主要获取?后面参数
+        result.addObject("page", yiArticle.getPage());
+        result.addObject("rows", yiArticle.getRows());
+        return result;
     }
 
     /*

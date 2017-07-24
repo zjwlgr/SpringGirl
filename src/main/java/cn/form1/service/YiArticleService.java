@@ -51,8 +51,10 @@ public class YiArticleService {
     /*
     * 查询所有 + 分页
     * */
-    public List<YiArticle> listall(){
-        PageHelper.startPage(2,5);
+    public List<YiArticle> listall(YiArticle yiArticle){
+        if (yiArticle.getPage() != null && yiArticle.getRows() != null) {
+            PageHelper.startPage(yiArticle.getPage(), yiArticle.getRows());
+        }
         return yiArticleMapper.listall();
     }
 

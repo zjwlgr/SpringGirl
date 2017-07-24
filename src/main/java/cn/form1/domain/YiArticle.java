@@ -1,6 +1,6 @@
 package cn.form1.domain;
 
-public class YiArticle {
+public class YiArticle extends Page {
     private Integer id;
 
     private String classOne;
