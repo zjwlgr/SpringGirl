@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 
 
-@Configuration
+//@Configuration
 public class ErrorPageConfig implements EmbeddedServletContainerCustomizer {
 
     @Override
