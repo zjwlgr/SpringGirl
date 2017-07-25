@@ -1,6 +1,8 @@
 package cn.form1.controller;
 
 import cn.form1.domain.YiArticle;
+import cn.form1.domain.yi_article;
+import cn.form1.mapper.yi_articleMapper;
 import cn.form1.service.YiArticleService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -124,5 +126,18 @@ public class TestXmlSqlController {
     }
 
 
+    /*
+    * 入库时获取时间戳使用 unix_timestamp()，获取日使用 now()
+    * yi_article 是新生成的一个实体，为了测试时间插入datatime格式
+    * 需要手动修改 XML中insert语句
+    *
+    * 一般插入用insert ，时间有特别需求 可用这个 insertSelective
+    * */
+    @Autowired
+    private yi_articleMapper yiarticleMapper; //没有创建service，直接引入的
+    @PostMapping(value = "/nowdata")
+    public int nowdata(yi_article yarti){
+        return yiarticleMapper.insert(yarti);
+    }
 
 }
