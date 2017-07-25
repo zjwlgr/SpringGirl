@@ -19,11 +19,11 @@ import org.springframework.http.HttpStatus;
 
 
 
-@SpringBootApplication()//(exclude = ErrorMvcAutoConfiguration.class) //exclude后不会在去把这个类纳入容器中管理
+@SpringBootApplication//(exclude = ErrorMvcAutoConfiguration.class) //exclude后不会在去把这个类纳入容器中管理
 @PropertySource("classpath:jdbc.properties") //可加载多个配置文件
 @MapperScan("cn.form1.mapper") //指定mybatis的Mapper的包路径
 
-public class SpinggirlApplication  extends SpringBootServletInitializer {
+public class SpinggirlApplication extends SpringBootServletInitializer {
 
 
     /**
@@ -36,12 +36,20 @@ public class SpinggirlApplication  extends SpringBootServletInitializer {
         return builder.sources(SpinggirlApplication.class);
     }
 
-	public static void main(String[] args) {
 
-        //SpringApplication.run(SpinggirlApplication.class, args);
+
+
+
+	public static void main(String[] args) {
 
         SpringApplication app = new SpringApplication(SpinggirlApplication.class);
         app.run(args);
+
+
+
+
+
+
         //设置控制台输入的Banner
         //app.setBannerMode(Banner.Mode.OFF);
 
@@ -61,8 +69,6 @@ public class SpinggirlApplication  extends SpringBootServletInitializer {
 
 
 
-
-
         /*   以下，一般不这样用，，暂废弃*/
         //创建Context上下文 并 运行应用
         //ConfigurableApplicationContext context = app.run(args);
@@ -73,7 +79,13 @@ public class SpinggirlApplication  extends SpringBootServletInitializer {
 
 
 
-    @Bean
+
+
+	/*
+	* 以下方法已废弃，使了单独ErrorpageConfig的类
+	* */
+
+    /*@Bean
     public EmbeddedServletContainerCustomizer containerCustomizer() {
 
         return (container -> {
@@ -88,5 +100,5 @@ public class SpinggirlApplication  extends SpringBootServletInitializer {
     @Override
     protected Object clone() throws CloneNotSupportedException {
         return super.clone();
-    }
+    }*/
 }

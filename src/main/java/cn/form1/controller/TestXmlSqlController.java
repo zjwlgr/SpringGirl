@@ -53,8 +53,10 @@ public class TestXmlSqlController {
     * 根据ID查询一个对象======自动生成的Mapper
     * */
     @GetMapping(value = "/article")
-    public YiArticle article(@RequestParam(value ="id") Integer id){
-        return yiArticleService.selectByPrimaryKey(id);
+    public ModelAndView article(@RequestParam(value ="id") Integer id){
+        ModelAndView result = new ModelAndView("pagescontent");
+        result.addObject("rows", yiArticleService.selectByPrimaryKey(id));
+        return result;
     }
 
     //======================================================================
@@ -62,7 +64,7 @@ public class TestXmlSqlController {
     /*
     * 查询所有 + 分页
     * */
-    @GetMapping(value = "/listall")
+    @GetMapping(value = "/")  //之前是 listall
     public ModelAndView listall(YiArticle yiArticle){
         ModelAndView result = new ModelAndView("pages");
         List<YiArticle> yiArticles = yiArticleService.listall(yiArticle);
