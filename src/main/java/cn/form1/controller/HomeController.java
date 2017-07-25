@@ -63,9 +63,9 @@ public class HomeController {
         throw new ClassNotFoundException("sdf500");
     }
 
-    @RequestMapping("404")
+    /*@RequestMapping("404")
     public String toPage(){
         return "404";
-    }
+    }*/
 
 }
