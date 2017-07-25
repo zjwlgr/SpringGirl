@@ -32,26 +32,14 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-
-			<!-- 移除嵌入式tomcat插件 打war包时需要 -->
-			<!--<exclusions>
-				<exclusion>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-starter-tomcat</artifactId>
-				</exclusion>
-			</exclusions>-->
-
 		</dependency>
 
-		<!-- 打包部署所更换的依赖 -->
-        <!--<dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-servlet-api</artifactId>
-            <version>8.0.36</version>
-            <scope>provided</scope>
-        </dependency>-->
-
-
+        <!-- 打包部署所更换的依赖 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
 
 
         <!--thymeleaf模板引擎的依赖-->

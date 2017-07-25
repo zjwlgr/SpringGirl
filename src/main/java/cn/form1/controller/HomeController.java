@@ -6,6 +6,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -62,5 +63,9 @@ public class HomeController {
         throw new ClassNotFoundException("sdf500");
     }
 
+    @RequestMapping("404")
+    public String toPage(){
+        return "404";
+    }
 
 }

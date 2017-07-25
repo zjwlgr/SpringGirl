@@ -1,4 +1,4 @@
-package cn.form1;
+package cn.form1.interceptor;
 
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;

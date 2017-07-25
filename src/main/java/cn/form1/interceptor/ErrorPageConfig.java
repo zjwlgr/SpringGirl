@@ -1,4 +1,4 @@
-package cn.form1;
+package cn.form1.interceptor;
 
 import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
@@ -15,7 +15,7 @@ public class ErrorPageConfig implements EmbeddedServletContainerCustomizer {
         container.addErrorPages(
                 new ErrorPage(HttpStatus.BAD_REQUEST, "/4O0.html"),
                 new ErrorPage(HttpStatus.UNAUTHORIZED, "/4O1.html"),
-                new ErrorPage(HttpStatus.NOT_FOUND, "/404.html"),
+                new ErrorPage(HttpStatus.NOT_FOUND, "/404/"),
                 new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/500.html")
         );
     }

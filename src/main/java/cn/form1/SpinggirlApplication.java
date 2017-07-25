@@ -1,21 +1,14 @@
 package cn.form1;
 
-import cn.form1.event.MyApplicationEvent;
-import cn.form1.event.MyApplicationListener;
+
 
 import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.boot.Banner;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.web.ErrorMvcAutoConfiguration;
-import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
-import org.springframework.boot.web.servlet.ErrorPage;
-import org.springframework.boot.web.support.SpringBootServletInitializer;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.Bean;
+
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.http.HttpStatus;
+
 
 
 
@@ -23,27 +16,26 @@ import org.springframework.http.HttpStatus;
 @PropertySource("classpath:jdbc.properties") //可加载多个配置文件
 @MapperScan("cn.form1.mapper") //指定mybatis的Mapper的包路径
 
-public class SpinggirlApplication extends SpringBootServletInitializer {
+public class SpinggirlApplication/* extends SpringBootServletInitializer*/ {
 
 
     /**
      * 如果要发布到自己的Tomcat中的时候，需要继承SpringBootServletInitializer类，并且增加如下的configure方法。
      * 如果不发布到自己的Tomcat中的时候，就无需上述的步骤
      */
-    @Override
+    /*@Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
         // 注意这里要指向原先用main方法执行的Application启动类
         return builder.sources(SpinggirlApplication.class);
     }
-
+*/
 
 
 
 
 	public static void main(String[] args) {
 
-        SpringApplication app = new SpringApplication(SpinggirlApplication.class);
-        app.run(args);
+        SpringApplication.run(SpinggirlApplication.class, args);
 
 
 
