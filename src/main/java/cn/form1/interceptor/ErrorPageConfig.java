@@ -22,5 +22,7 @@ public class ErrorPageConfig implements EmbeddedServletContainerCustomizer {
         );
     }
 }
-/*参考：http://www.imooc.com/article/16985*/
+/*参考：http://www.imooc.com/article/16985
+*
+* http://blog.csdn.net/linzhiqiang0316/article/details/52600839*/
 
