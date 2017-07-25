@@ -1,5 +1,7 @@
 package cn.form1.interceptor;
 
+
+
 import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
 import org.springframework.boot.web.servlet.ErrorPage;
@@ -20,3 +22,5 @@ public class ErrorPageConfig implements EmbeddedServletContainerCustomizer {
         );
     }
 }
+/*参考：http://www.imooc.com/article/16985*/
+
