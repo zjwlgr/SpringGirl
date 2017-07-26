@@ -31,9 +31,13 @@ public class MyHandleInterceptor implements HandlerInterceptor {
         System.out.println("==postHandle:在Controller调用之后 且 页面渲染之前运行==" + o.getClass()+"-----"+httpServletResponse.getStatus());
 
         if(httpServletResponse.getStatus()==500){
-            modelAndView.setViewName("500");
+            modelAndView.setViewName("pages/500");
+        }else if(httpServletResponse.getStatus()==400){
+            modelAndView.setViewName("pages/400");
+        }else if(httpServletResponse.getStatus()==401){
+            modelAndView.setViewName("pages/401");
         }else if(httpServletResponse.getStatus()==404){
-            modelAndView.setViewName("404");
+            modelAndView.setViewName("pages/404");
         }
     }
 

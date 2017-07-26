@@ -8,7 +8,7 @@ import org.springframework.boot.web.servlet.ErrorPage;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 
-
+//使用这种方式，在打包为war后不起作用
 //@Configuration
 public class ErrorPageConfig implements EmbeddedServletContainerCustomizer {
 
