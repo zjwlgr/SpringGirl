@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * 测试 Thymeleaf
@@ -63,9 +64,27 @@ public class HomeController {
         throw new ClassNotFoundException("sdf500");
     }
 
-    /*@RequestMapping("404")
-    public String toPage(){
-        return "404";
-    }*/
+    /*
+    * 测试session 设置session
+    * */
+    @GetMapping(value = "/setsession")
+    public String setsession(ModelMap model, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        session.setAttribute("data", "孤傲苍狼");
+        model.addAttribute("val","sessionss");
+        return "testsession";
+    }
+
+    /*
+    * 测试session 获取session
+    * */
+    @GetMapping(value = "/getsession")
+    public String getsession(ModelMap model, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        model.addAttribute("val",session.getAttribute("data"));
+        return "testsession";
+    }
+
+    /*复习下session 与 cookie,写个文章上去*/
 
 }
