@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>在spring boot中测试上传文件</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+<form action="/upload_UP" method="POST" enctype="multipart/form-data">
+    文件：<input type="file" name="test"/>
+    <input type="submit" />
+</form>
+
+<a href="/download">下载文件测试</a>
+
+<p>多文件上传</p>
+<form method="POST" enctype="multipart/form-data" action="/batch/upload">
+    <p>文件1：<input type="file" name="file" /></p>
+    <p>文件2：<input type="file" name="file" /></p>
+    <p><input type="submit" value="上传" /></p>
+</form>
+
+</body>
+</html>

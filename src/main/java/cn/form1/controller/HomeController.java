@@ -2,18 +2,27 @@ package cn.form1.controller;
 
 import cn.form1.event.MyApplicationEvent;
 import cn.form1.utils.CookieUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.UUID;
 
 /**
  * 测试 Thymeleaf
@@ -128,6 +137,82 @@ public class HomeController {
         CookieUtil.delCookieAll(response, request);
         return "OK";
     }
+
+
+    /*
+    * ====================================上传文件测试
+    * */
+    @GetMapping(value = "/upload")
+    public String upload(){
+        return "upload";
+    }
+
+    private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+    //文件上传相关代码
+    @RequestMapping(value = "/upload_UP")
+    @ResponseBody
+    public String upload(@RequestParam(value = "test") MultipartFile file) {
+        if (file.isEmpty()) {
+            return "文件为空";
+        }
+
+
+        // 获取文件名
+        String fileName = file.getOriginalFilename();
+        logger.info("filename:" + fileName);
+
+        // 获取文件的后缀名
+        String suffixName = fileName.substring(fileName.lastIndexOf("."));
+        logger.info("suffixName:" + suffixName);
+
+        // 文件上传后的路径
+        SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");// 设置日期格式
+        String dateDir = df.format(new Date());// new Date()为获取当前系统时间
+        String filePath = "C://testssssssssssss//"+dateDir+"//";
+
+        // 使用GUID重命名图片名称
+        fileName = UUID.randomUUID() + suffixName;
+        File dest = new File(filePath + fileName);
+
+        //获取文件大小
+        long filesize = dest.length();
+        logger.info("filesize:" + filesize);
+
+        // 检测是否存在目录
+        if (!dest.getParentFile().exists()) {
+            dest.getParentFile().mkdirs();
+        }
+        try {
+            file.transferTo(dest);
+            return "上传成功";
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "上传失败";
+
+        //TODO 想使用 commons-fileupload 这个jar包
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }
