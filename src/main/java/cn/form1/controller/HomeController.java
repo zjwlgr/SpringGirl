@@ -220,6 +220,7 @@ public class HomeController {
             MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest)request;
             //取得request中的所有文件名
             Iterator<String> iter = multiRequest.getFileNames();
+            int i = 0;
             while(iter.hasNext()){
                 //记录上传过程起始时的时间，用来计算上传时间
                 //int pre = (int) System.currentTimeMillis();
@@ -235,6 +236,7 @@ public class HomeController {
 
                     //如果名称不为“”,说明该文件存在，否则说明该文件不存在
                     if(myFileName.trim() !=""){
+                        i++;
                         System.out.println(myFileName);
                         //重命名上传后的文件名
                         // 使用GUID重命名图片名称
@@ -244,6 +246,7 @@ public class HomeController {
                         String path = "C:/" + fileName;
                         File localFile = new File(path);
                         file.transferTo(localFile);
+                        System.out.println("path==========="+i+"-"+path);
                     }
                 }
                 //记录上传该文件后的时间
