@@ -8,11 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +26,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.UUID;
 
 /**
@@ -143,7 +148,13 @@ public class HomeController {
     * ====================================上传文件测试
     * */
     @GetMapping(value = "/upload")
-    public String upload(){
+    public String upload(ModelMap model){
+
+        //在这里测试获取项目运行路径
+        System.out.println(ClassUtils.getDefaultClassLoader().getResource("").getPath());
+        String path = ClassUtils.getDefaultClassLoader().getResource("").getPath();
+        model.addAttribute("path",path);
+        //输出为：/E:/Program%20Files/Java/apache-tomcat-8.5.16/webapps/spinggirl-0.0.1-SNAPSHOT/WEB-INF/classes/ 这里在加upload/userimg/2939484/sdfsdf.jpg
         return "upload";
     }
 
@@ -191,8 +202,61 @@ public class HomeController {
             e.printStackTrace();
         }
         return "上传失败";
+    }
 
-        //TODO 想使用 commons-fileupload 这个jar包
+    @RequestMapping(value = "/uploadjar")
+    public void uploadjar(HttpServletRequest request,HttpServletResponse response) throws IllegalStateException, IOException{
+
+        //创建一个通用的多部分解析器
+        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());
+
+        /*multipartResolver.setDefaultEncoding("utf-8");
+        multipartResolver.setMaxUploadSize(11);
+        multipartResolver.setMaxInMemorySize(11);*/
+
+        //判断 request 是否有文件上传,即多部分请求
+        if(multipartResolver.isMultipart(request)){
+            //转换成多部分request
+            MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest)request;
+            //取得request中的所有文件名
+            Iterator<String> iter = multiRequest.getFileNames();
+            while(iter.hasNext()){
+                //记录上传过程起始时的时间，用来计算上传时间
+                //int pre = (int) System.currentTimeMillis();
+                //取得上传文件
+                MultipartFile file = multiRequest.getFile(iter.next());
+                if(file != null){
+                    //取得当前上传文件的文件名称
+                    String myFileName = file.getOriginalFilename();
+                    System.out.println("getSize："+file.getSize());
+
+                    // 获取文件的后缀名
+                    String suffixName = myFileName.substring(myFileName.lastIndexOf("."));
+
+                    //如果名称不为“”,说明该文件存在，否则说明该文件不存在
+                    if(myFileName.trim() !=""){
+                        System.out.println(myFileName);
+                        //重命名上传后的文件名
+                        // 使用GUID重命名图片名称
+                        //myFileName = UUID.randomUUID() + suffixName;
+                        String fileName = myFileName;
+                        //定义上传路径
+                        String path = "C:/" + fileName;
+                        File localFile = new File(path);
+                        file.transferTo(localFile);
+                    }
+                }
+                //记录上传该文件后的时间
+                //int finaltime = (int) System.currentTimeMillis();
+                //System.out.println(finaltime - pre);
+
+
+            }
+
+        }
+        //return "/success";
+        //http://blog.csdn.net/a1314517love/article/details/24183273
+
     }
 
 

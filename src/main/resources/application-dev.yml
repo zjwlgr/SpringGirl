@@ -19,6 +19,12 @@ spring:
   jackson:
     default-property-inclusion: non_null #输入json的时候，如果有属性值为null而不打印该属性
 
+
+  multipart:
+    enabled: true
+    max-file-size: 50MB
+    max-request-size: 50MB
+
 #mybatis.typeAliasesPackage：指定domain类的基包，即指定其在*Mapper.xml文件中可以使用简名来代替全类名
 #mybatis.mapperLocations：指定*Mapper.xml的位置，#如果使纯注解的方式 则不需要
 mybatis:
@@ -26,6 +32,9 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml
   config-location: classpath:mybatis-config.xml
   check-config-location: true
+
+
+
 
 
 #以下自定义配置
