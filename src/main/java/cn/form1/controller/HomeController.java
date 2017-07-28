@@ -220,6 +220,9 @@ public class HomeController {
             MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest)request;
             //取得request中的所有文件名
             Iterator<String> iter = multiRequest.getFileNames();
+
+
+            //批量上传是按表单顺序返回来的
             int i = 0;
             while(iter.hasNext()){
                 //记录上传过程起始时的时间，用来计算上传时间
@@ -252,6 +255,7 @@ public class HomeController {
                 //记录上传该文件后的时间
                 //int finaltime = (int) System.currentTimeMillis();
                 //System.out.println(finaltime - pre);
+
 
 
             }
