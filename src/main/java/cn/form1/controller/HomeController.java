@@ -2,6 +2,7 @@ package cn.form1.controller;
 
 import cn.form1.event.MyApplicationEvent;
 import cn.form1.utils.CookieUtil;
+import cn.form1.utils.UploadUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -153,7 +154,7 @@ public class HomeController {
         //在这里测试获取项目运行路径
         System.out.println(ClassUtils.getDefaultClassLoader().getResource("").getPath());
         String path = ClassUtils.getDefaultClassLoader().getResource("").getPath();
-        model.addAttribute("path",path);
+        model.addAttribute("path",path.substring(1));
         //输出为：/E:/Program%20Files/Java/apache-tomcat-8.5.16/webapps/spinggirl-0.0.1-SNAPSHOT/WEB-INF/classes/ 这里在加upload/userimg/2939484/sdfsdf.jpg
         return "upload";
     }
@@ -205,7 +206,9 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/uploadjar")
-    public void uploadjar(HttpServletRequest request,HttpServletResponse response) throws IllegalStateException, IOException{
+    @ResponseBody
+    public String uploadjar(HttpServletRequest request) throws IllegalStateException, IOException{
+
 
         //创建一个通用的多部分解析器
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());
@@ -229,7 +232,10 @@ public class HomeController {
                 //int pre = (int) System.currentTimeMillis();
                 //取得上传文件
                 MultipartFile file = multiRequest.getFile(iter.next());
-                if(file != null){
+
+               //System.out.println("currentTimeMillis："+pre);
+
+                if(!file.isEmpty()){
                     //取得当前上传文件的文件名称
                     String myFileName = file.getOriginalFilename();
                     System.out.println("getSize："+file.getSize());
@@ -240,14 +246,32 @@ public class HomeController {
                     //如果名称不为“”,说明该文件存在，否则说明该文件不存在
                     if(myFileName.trim() !=""){
                         i++;
-                        System.out.println(myFileName);
+                        System.out.println("myFileName："+myFileName);
                         //重命名上传后的文件名
                         // 使用GUID重命名图片名称
-                        //myFileName = UUID.randomUUID() + suffixName;
+                        myFileName = UUID.randomUUID() + suffixName;
                         String fileName = myFileName;
+
+
+
                         //定义上传路径
-                        String path = "C:/" + fileName;
+                        //      /C:/myJavaEEWorkSp...返回中前面有个斜杠，所以下面要去掉
+                        String pathss = ClassUtils.getDefaultClassLoader().getResource("").getPath();
+                        SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");// 设置日期格式
+                        String dateDir = df.format(new Date());// new Date()为获取当前系统时间
+                        pathss = pathss + "static/upload/"+dateDir+"/";
+
+                        String path = pathss.substring(1) + fileName;
+
+
+
                         File localFile = new File(path);
+
+                        // 检测是否存在目录
+                        if (!localFile.getParentFile().exists()) {
+                            localFile.getParentFile().mkdirs();
+                        }
+
                         file.transferTo(localFile);
                         System.out.println("path==========="+i+"-"+path);
                     }
@@ -260,17 +284,31 @@ public class HomeController {
 
             }
 
+        }else{
+            return "请选择要上传的文件！";
         }
-        //return "/success";
+        return "success";
         //http://blog.csdn.net/a1314517love/article/details/24183273
 
     }
 
 
+    /*
+    * 测试上传类
+    * */
+    @RequestMapping(value = "/uploadclass")
+    @ResponseBody
+    public String uploadclass(HttpServletRequest request) throws IllegalStateException, IOException{
+
+        UploadUtil uploadUtil = new UploadUtil();
+        String str = uploadUtil.upload(request);
+
+        return str;
+
+    }
 
 
-
-
+//TODO  验证码，加密解密方法，md5，
 
 
 
