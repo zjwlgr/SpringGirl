@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -144,6 +145,27 @@ public class HomeController {
         return "OK";
     }
 
+    /*
+    * 测试查找字符串，与字符串是否为空
+    * */
+    @GetMapping(value = "/isstr")
+    @ResponseBody
+    public String isstr(){
+        String str = ".jpg*.png*.gif*.jpeg";
+        String ext = ".jpeg";
+        if(str.indexOf(ext) != -1){
+            return "yes";
+        }else{
+            return "no";
+        }
+        /*if(str.isEmpty()){
+            return "null";
+        }else{
+            return "yes";
+        }*/
+
+
+    }
 
     /*
     * ====================================上传文件测试
@@ -300,15 +322,21 @@ public class HomeController {
     @ResponseBody
     public String uploadclass(HttpServletRequest request) throws IllegalStateException, IOException{
 
-        UploadUtil uploadUtil = new UploadUtil();
-        String str = uploadUtil.upload(request);
-
-        return str;
-
+        UploadUtil upload = new UploadUtil();
+        upload.setMaxSize(50000);
+        upload.setExts(".jpg|.png|.gif|.jpeg");
+        upload.setSavePath("mydogimg/");
+        if(upload.upload(request)){
+            List list = upload.getFileNames();
+            String str = (String) list.get(0);
+            return str+"===";
+        }else{
+            return upload.getError();
+        }
     }
 
 
-//TODO  验证码，加密解密方法，md5，
+//TODO  下载文件测试，验证码，加密解密方法，md5
 
 
 
