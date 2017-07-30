@@ -12,7 +12,6 @@ import java.util.Map;
 public class CookieUtil {
 
     /**
-     * 设置cookie
      * @param response
      * @param name  cookie名字
      * @param value cookie值

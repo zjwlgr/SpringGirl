@@ -8,7 +8,7 @@ import cn.form1.enums.ResultEnum;
  */
 public class ResultUtil {
 
-    /*
+    /**
     * 成功要调用的方法，有Object参数
     * @param object
     * @return Result
@@ -23,14 +23,14 @@ public class ResultUtil {
         return result;
     }
 
-    /*
+    /**
     * 成功要调用的方法，重法重载，没有Object参数的
     * */
     public static Result success(){
         return success(null);
     }
 
-    /*
+    /**
     * 失败调用的方法
     * @param code 错误代码
     * @param msg 提示信息
